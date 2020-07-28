@@ -5,8 +5,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  font-family:'Jost', sans-serif;
 
+ 
+}
+#logo{
+  font-family:'Bebas Neue', cursive;
+  
+}
+#logo h1{
+  text-shadow: 1px 1px 2px #fbfbfb;
+}
+#articleAdd{
+  font-family:'Lobster', cursive;
+  text-shadow: 2px 2px 4px #cecaca;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
