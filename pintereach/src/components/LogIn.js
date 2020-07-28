@@ -1,6 +1,8 @@
 import React, {useState} from "react";
+import { connect } from "react-redux";
+import { signIn } from "../actions"
 
-const LogIn = () => {
+const LogIn = (props) => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -13,13 +15,14 @@ const LogIn = () => {
         })
     }
 
-    const signIn = e =>{
+    const onSubmit = e =>{
         e.preventDefault();
         console.log("SignIn", credentials)
+        props.signIn(credentials);
     }
 
     return(
-        <form onSubmit={signIn}>
+        <form onSubmit={onSubmit}>
             <label htmlFor="username">
                 <input
                     type="text"
@@ -46,4 +49,13 @@ const LogIn = () => {
 
 }
 
-export default LogIn
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = { signIn };
+
+
+export default connect (mapStateToProps, mapDispatchToProps)(LogIn);
