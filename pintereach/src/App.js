@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import styled from 'styled-components';
 import AddArticleForm from './components/AddArticleForm';
 import LogIn from './components/LogIn';
+import SignUserUp from './components/SignUp';
 import Footer from './components/Footer';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Container>
       <NavBar />
       <LogIn />
+      <SignUserUp/>
       <Footer />
     </Container>
 
