@@ -22,29 +22,32 @@ const LogIn = (props) => {
     }
 
     return(
-        <form onSubmit={onSubmit}>
-            <label htmlFor="username">
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    placeholder="User Name"
-                    value={credentials.username}
-                    onChange={handleChange}
-                />
-            </label>
-            <label htmlFor="password">
-                <input
-                    type="text"
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    value={credentials.password}
-                    onChange={handleChange}
-                />
-            </label>
-            <button>Sign In</button>
-        </form>
+        <div>
+            <h2>Already have an account? Log Into Pintereach</h2>
+            <form onSubmit={onSubmit}>
+                <label htmlFor="username">
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="User Name"
+                        value={credentials.username}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label htmlFor="password">
+                    <input
+                        type="text"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        value={credentials.password}
+                        onChange={handleChange}
+                    />
+                </label>
+                <button>Sign In</button>
+            </form>
+        </div>
     )
 
 }
