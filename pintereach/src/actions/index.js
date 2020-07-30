@@ -10,14 +10,16 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAIL = "SIGN_UP_FAIL";
 
 
-export const signIn = (credentials) => dispatch => {
+export const signIn = (credentials, history) => dispatch => {
     console.log("signIn", credentials);
     dispatch({ type: FETCHING_SIGN_IN_START})
     axiosWithAuth()
     .post("/login", credentials )
     .then(res => {
-        console.log("res from signIn", res.data)
-        dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: res.data })
+        console.log("res from signIn", res.data);
+        localStorage.setItem('token', res.data.token);
+        dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: res.data });
+        history.push("/article-list");
     })
     .catch( err => { 
         console.log(err);
