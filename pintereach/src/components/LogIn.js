@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
-import { signIn } from "../actions";
+
+import { signIn } from "../actions"
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 
+
 const LogIn = (props) => {
+    let history = useHistory();
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -19,7 +23,7 @@ const LogIn = (props) => {
     const onSubmit = e =>{
         e.preventDefault();
         console.log("SignIn", credentials)
-        props.signIn(credentials);
+        props.signIn(credentials, history);
     }
 
     return(

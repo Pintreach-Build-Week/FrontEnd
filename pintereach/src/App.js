@@ -1,46 +1,26 @@
 import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar';
-import styled from 'styled-components';
-import AddArticleForm from './components/AddArticleForm';
 import LogIn from './components/LogIn';
-import SignUserUp from './components/SignUp';
-import Footer from './components/Footer';
+import NavBar from './components/NavBar';
+
+// import AddArticleForm from './components/AddArticleForm';
+
+import { Route } from "react-router-dom";
+import Home from "./components/Home";
+import PrivateRoute from "./components/PrivateRoute";
+import ArticleList from "./components/ArticleList";
+
 
 function App() {
   return (
-    <Container>
-      <NavBar />
-      <div id="flexthem">
-      <div id="leftside">
-      <LogIn />
-      </div>
-      <div id="rightside">
-      <SignUserUp/>
-      </div>
-      </div>
-      <Footer />
-    </Container>
-
+    <div>
+    <NavBar/>
+    <Route exact path="/" component={Home}/>
+    <Route path="/login" component={LogIn} />
+    <PrivateRoute path="/article-list" component={ArticleList}/>
+    
+    </div>
   )
 }
-const Container = styled.div`
-    margin: 0px;
-
-    #flexthem{
-      display:flex;
-      justify-content:space-between;
-      width:95vw;
-      margin:0 auto;
-
-      #leftside{
-        width:50vw;
-      }
-
-      #rightside{
-        width:50vw;
-      }
-    }
-`
 
 export default App;
