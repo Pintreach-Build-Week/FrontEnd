@@ -1,7 +1,10 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
+
 import { signIn } from "../actions"
 import { useHistory } from "react-router-dom";
+import styled from 'styled-components';
+
 
 const LogIn = (props) => {
     let history = useHistory();
@@ -24,8 +27,10 @@ const LogIn = (props) => {
     }
 
     return(
-        <div>
-            <h2>Already have an account? Log Into Pintereach</h2>
+        <LogDiv>
+            <div id="sticky">
+            <h2>Already have an account?</h2>
+            <h3> Log Into Pintereach</h3>
             <form onSubmit={onSubmit}>
                 <label htmlFor="username">
                     <input
@@ -49,11 +54,49 @@ const LogIn = (props) => {
                 </label>
                 <button>Sign In</button>
             </form>
-        </div>
+            </div>
+        </LogDiv>
     )
 
 }
+const LogDiv = styled.div`
+    padding:20px;
+    font-size:1.2rem;
+    text-align:center;
 
+    #sticky{
+        background-color:#fbfbfb;
+        border-radius:2px;
+        padding:2%;
+        height:40vh;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+        h2{
+            font-size:2rem;
+            margin-bottom:0%;
+            
+        }
+        h3{
+            margin-top:1%;
+        }
+        form{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+
+            label{
+                margin-bottom:2%;
+            }
+            button{
+                background-color:#756C83;
+                color:white;
+            }
+        }
+    
+    
+    }
+
+`
 const mapStateToProps = state => {
     return {
 
