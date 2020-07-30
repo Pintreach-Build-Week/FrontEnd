@@ -20,9 +20,7 @@ function App() {
     <PrivateRoute path="/article-list" component={ArticleList}/>
     
     </div>
-
   )
 }
-
 
 export default App;
