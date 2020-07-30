@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { connect } from "react-redux";
-import { signUp } from "../actions"
+import { signUp } from "../actions";
+import styled from 'styled-components';
 
 const SignUserUp = ({signUp}) => {
     const [userInfo, setUserInfo] = useState({
@@ -19,8 +20,10 @@ const SignUserUp = ({signUp}) => {
         signUp(userInfo);
     }
     return(
-        <div>
-            <h2>Do not have an account yet? Sign Up For Pintereach</h2>
+        <SignDiv>
+            <div id="note">
+            <h2>Do not have an account yet?</h2>
+            <h3>Sign Up For Pintereach</h3>
             <form onSubmit={onSignUp}>
             <label htmlFor="username">
                 <input
@@ -45,8 +48,46 @@ const SignUserUp = ({signUp}) => {
             <button>Sign Up Now</button>
         </form>
         </div>
+        </SignDiv>
     );
 }
+const SignDiv = styled.div`
+    padding:20px;
+    font-size:1.2rem;
+    text-align:center;
+
+    #note{
+        background-color:#fbfbfb;
+        border-radius:2px;
+        padding:2%;
+        height:40vh;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+        h2{
+            font-size:2rem;
+            margin-bottom:0%;
+            
+        }
+        h3{
+            margin-top:1%;
+        }
+        form{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+
+            label{
+                margin-bottom:2%;
+            }
+            button{
+                background-color:#756C83;
+                color:white;
+            }
+        }
+    
+    
+    }
+`
 const mapStateToProps = state => {
     return {
 
