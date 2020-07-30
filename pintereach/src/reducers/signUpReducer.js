@@ -9,7 +9,8 @@ const initialState = {
         username: "",
         password: ""
     },
-    isSignedUp: false
+    isSignedUp: false,
+    isLoading: false
 }
 
 export const signUpReducer = ( state = initialState, action) => {
@@ -23,7 +24,7 @@ export const signUpReducer = ( state = initialState, action) => {
         case SIGN_UP_SUCCESS:
             return {
                 ...state,
-                isSignedUp: false
+                isSignedUp: true,
             };
         case SIGN_UP_FAIL: 
             return {

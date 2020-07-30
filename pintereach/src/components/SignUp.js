@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { signUp } from "../actions";
 import styled from 'styled-components';
 
-const SignUserUp = ({signUp}) => {
+
+
+const SignUserUp = ({signUp, isLoading, isSignedUp}) => {
     const [userInfo, setUserInfo] = useState({
         username: "",
         password: ""
@@ -18,6 +20,14 @@ const SignUserUp = ({signUp}) => {
         e.preventDefault();
         console.log("SignUp", userInfo)
         signUp(userInfo);
+    }
+    console.log('loading ', isLoading);
+    if (isLoading) {
+        return <h2>Loading...</h2>;
+    };
+
+    if (isSignedUp){
+        return <h2>All Signed Up, Please Log In To See And Add Articles</h2>
     }
     return(
         <SignDiv>
@@ -89,8 +99,10 @@ const SignDiv = styled.div`
     }
 `
 const mapStateToProps = state => {
+    console.log('state ', state);
     return {
-
+        isLoading: state.signUpReducer.isLoading,
+        isSignedUp: state.signUpReducer.isSignedUp
     }
 }
 

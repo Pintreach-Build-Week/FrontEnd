@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import ArticleList from "./components/ArticleList";
+import ArticleCard from './components/ArticleCard';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <Route exact path="/" component={Home}/>
     <Route path="/login" component={LogIn} />
     <PrivateRoute path="/article-list" component={ArticleList}/>
+    <PrivateRoute path="/article-card" component={ArticleCard}/>
     
     </div>
   )

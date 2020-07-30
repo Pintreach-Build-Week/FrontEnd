@@ -1,9 +1,14 @@
 import React from "react";
+import ArticleCard from "./ArticleCard"
 
-const ArticleCard = () => {
+const ArticleList = () => {
     return(
-        <h1>Article List</h1>
+        <div>
+            <h1>Article List</h1>
+            <ArticleCard/>
+        </div>
+     
     )
 }
 
-export default ArticleCard;
+export default ArticleList;
