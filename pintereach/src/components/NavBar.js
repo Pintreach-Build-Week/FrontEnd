@@ -1,14 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
+import './css/landingpage.css';
 
 
 const NavBar = (props) => {
 
     return (
         <NavContainer>
-            <div id="logo">
-                <h1 >Pintereach</h1>
-            </div>
+            <meta charSet="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Pintereach | A go-to spot for your research topics! </title>
+            <link rel="stylesheet" type="text/css" href="css/landingpage.css" />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Girassol&family=Grand+Hotel&family=Lobster&family=Montserrat&family=Oswald:wght@300&display=swap"
+                rel="stylesheet"
+            />
+            <section id="header">
+                <section id="logosection">
+                    <a href="https://pintereachbrittany.netlify.app">
+                        <h1 id="logo">Pintereach</h1>
+                    </a>
+                    <h6 id="slogan">A go-to spot for your research topics!</h6>
+                </section>
+                <nav id="mainnav">
+                    <a href="about/">About</a>
+                    <a href="/home" className="special">
+                        Login
+      </a>
+                </nav>
+            </section>
         </NavContainer>
     );
 
@@ -16,12 +36,7 @@ const NavBar = (props) => {
 
 const NavContainer = styled.div`
     background-color: #B9E1DC;
-    margin-top:-22px;
-    height:15vh;
-
-    #logo{
-        padding: 2%;
-        
+   
     }
     `
 export default NavBar;

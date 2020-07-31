@@ -138,11 +138,12 @@
   @media (max-width:500px) {
     #header #logosection a {
       text-align: center;
+      
       padding-bottom: 4%;
     }
   }
   #header #logosection #slogan {
-    margin-top: -5%;
+    margin-top: 0%;
     text-align: center;
     font-size: 1.2rem;
   }
@@ -298,7 +299,7 @@
     padding: 10%;
     display: flex;
     justify-content: space-evenly;
-    background-color: #FBFBFB;
+    background-color: #ffffff;
   }
   @media (max-width:800px) {
     #container #contentMain #bottomcontent {
@@ -321,8 +322,8 @@
     }
   }
   #container #contentMain #bottomcontent p {
-    font-size: 2rem;
-    margin-top: 10%;
+    font-size: 1.5rem;
+    margin-top: 5%;
     order: 2;
   }
   @media (max-width:500px) {
