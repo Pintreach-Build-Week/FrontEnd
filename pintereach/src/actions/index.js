@@ -52,12 +52,12 @@ export const signUp = (userInfo) => dispatch => {
 };
 
 export const submitEditArt = (updateArtInfo,history) => dispatch => {
-    console.log("submitEditArt",updateArtInfo )
+    // console.log("submitEditArt",updateArtInfo )
     dispatch({ type: UPDATE_ART_START})
     axiosWithAuth()
     .put(`/articles/${id}`, updateArtInfo )  //put in id dynamically
     .then(res => {
-        console.log("res from submitUpdateArt", res.data)
+        console.log("res from submitUpdateArt", res)
         dispatch({ type: UPDATE_ART_SUCCESS, payload: res.data })
         history.push("/article-list")
     })

@@ -3,44 +3,31 @@ import { connect } from "react-redux"
 import {removeArt, submitEditArt} from "../actions";
 import { useHistory } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
-
-const mockData = {
-    id: 1,
-    title: "article 1",
-    author: "author 1",
-    url: "link1",
-    categories: "diy",
-    notes: "notes go here"
-}
+import { initialState } from "../reducers/articleCardReducer";
+import "../../src/"
 
 
 
-
-const ArticleCard = ({submitEditArt, removeArt}) => {
-    const cardId = 1;
-    
+const ArticleCard = ({
+    submitEditArt, 
+    removeArt, 
+    isUpdating, 
+    isUpdated,
+    isRemoving,
+    isRemoved
+}) => {
+    let history = useHistory();
+    const [formInfo, setFormInfo] = useState(initialState)
+    const cardId = 1; 
     useEffect(() => {
         AxiosWithAuth()
         .get(`/articles/${cardId}`)
         .then( res => {
-            console.log("article data", res.data)
-
+            setFormInfo(res.data);
         })
         .catch(err => console.log(err))
     },[]);
-
-    let history = useHistory();
-    const [formInfo, setFormInfo] = useState ({
-        id: 1,
-        title: "article 1",
-        author: "author 1",
-        url: "link1",
-        categories:"tech",
-        notes: "notes go here"
-
-    })
     const handleChanges = e => {
-    
         setFormInfo({
             ...formInfo,
             [e.target.name]: e.target.value
@@ -54,16 +41,25 @@ const ArticleCard = ({submitEditArt, removeArt}) => {
         e.preventDefault();
         removeArt(history)
     }
-
+    const backToList = () =>{
+        history.push("/article-list")
+    }
+    if (isUpdating) {
+        return <h4>Loading Update...</h4>
+    }
+    if (isRemoving){
+        return <h4>Removing Article...</h4>
+    }
+    
     return(
         <div>
-            <form>
+            <form className="artCardForm">
                 <label htmlFor="title">
                     <input
                         type="text"
                         name="title"
                         id="title"
-                        placeholder={mockData.title}
+                        placeholder="title"
                         value={formInfo.title}
                         onChange={handleChanges}
                     />
@@ -73,7 +69,7 @@ const ArticleCard = ({submitEditArt, removeArt}) => {
                         type="text"
                         name="author"
                         id="author"
-                        placeholder={mockData.author}
+                        placeholder="author"
                         value={formInfo.author}
                         onChange={handleChanges}
                     />
@@ -83,7 +79,7 @@ const ArticleCard = ({submitEditArt, removeArt}) => {
                         type="text"
                         name="url"
                         id="url"
-                        placeholder={mockData.url}
+                        placeholder="url"
                         value={formInfo.url}
                         onChange={handleChanges}
                     />
@@ -93,7 +89,7 @@ const ArticleCard = ({submitEditArt, removeArt}) => {
                         type="text"
                         name="categories"
                         id="categories"
-                        placeholder={mockData.categories}
+                        placeholder="categories"
                         value={formInfo.categories}
                         onChange={handleChanges}
                     />
@@ -103,24 +99,33 @@ const ArticleCard = ({submitEditArt, removeArt}) => {
                         type="text"
                         name="notes"
                         id="notes"
-                        placeholder={mockData.notes}
+                        placeholder="notes"
                         value={formInfo.notes}
                         onChange={handleChanges}
                     />
                 </label>
                 <button onClick={delArt}>Remove Article</button>
                 <button onClick={editArt}>Edit Article</button>
+                <button onClick={backToList}>Back to Article List</button>
             </form>
+            {
+                (isUpdated) ? <h4>Changed Updated</h4> : null
+            }
+            {
+                (isRemoved) ? <h4>Article Removed</h4> : null
+            }
         </div>
     )
-
-
 
 }
 
 const mapStateToProps = state => {
+    console.log('state', state);
     return{
-
+        isUpdating: state.articleCardReducer.isUpdating,
+        isUpdated: state.articleCardReducer.isUpdated,
+        isRemoving: state.articleCardReducer.isRemoving,
+        isRemoved: state.articleCardReducer.isRemoved 
     }
 }; 
 
