@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { signUp } from "../actions";
 import styled from 'styled-components';
 
-
-
 const SignUserUp = ({signUp, isLoading, isSignedUp}) => {
     const [userInfo, setUserInfo] = useState({
         username: "",

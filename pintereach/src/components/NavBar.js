@@ -2,17 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const NavBar = (props) =>{
+const NavBar = (props) => {
 
-return(
-    <NavContainer>
-        <div id="logo">
-            <h1 >Pintereach</h1>
-        </div>
-    </NavContainer>
-);
+    return (
+        <NavContainer>
+            <div id="logo">
+                <h1 >Pintereach</h1>
+            </div>
+        </NavContainer>
+    );
 
-    
 }
 
 const NavContainer = styled.div`
@@ -25,5 +24,4 @@ const NavContainer = styled.div`
         
     }
     `
-
 export default NavBar;

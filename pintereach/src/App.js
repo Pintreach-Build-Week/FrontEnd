@@ -10,14 +10,16 @@ import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import ArticleList from "./components/ArticleList";
 import ArticleCard from './components/ArticleCard';
+import LandingPage from './components/LandingPage';
 
 
 function App() {
   return (
     <div>
     <NavBar/>
-    <Route exact path="/" component={Home}/>
+    <Route exact path="/" component={LandingPage}/>
     <Route path="/login" component={LogIn} />
+    <Route path="/home" component={Home} />
     <PrivateRoute path="/article-list" component={ArticleList}/>
     <PrivateRoute path="/article-card" component={ArticleCard}/>
     

@@ -11,7 +11,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
                     return <Component {...props}/>
                 } else {
                     console.log("redirecting!");
-                    return <Redirect to="/login" />  //redirect back to log in page since info did not vrf
+                    return <Redirect to="/home" />  //redirect back to log in page since info did not vrf
                 }
 
             }}

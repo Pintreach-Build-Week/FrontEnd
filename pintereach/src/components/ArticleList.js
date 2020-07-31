@@ -7,7 +7,6 @@ const ArticleList = () => {
             <h1>Article List</h1>
             <ArticleCard/>
         </div>
-     
     )
 }
 
