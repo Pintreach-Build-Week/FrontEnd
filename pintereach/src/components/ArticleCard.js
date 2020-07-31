@@ -4,7 +4,7 @@ import {removeArt, submitEditArt} from "../actions";
 import { useHistory } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { initialState } from "../reducers/articleCardReducer";
-import "../../src/"
+import styled from "styled-components";
 
 
 
@@ -52,10 +52,11 @@ const ArticleCard = ({
     }
     
     return(
-        <div>
-            <form className="artCardForm">
+        <ArtDiv>
+            <StyledForm className="artCardForm">
+                <div>
                 <label htmlFor="title">
-                    <input
+                    <StyledTextInput
                         type="text"
                         name="title"
                         id="title"
@@ -65,7 +66,7 @@ const ArticleCard = ({
                     />
                 </label>
                 <label htmlFor="author">
-                    <input
+                    <StyledTextInput
                         type="text"
                         name="author"
                         id="author"
@@ -74,8 +75,10 @@ const ArticleCard = ({
                         onChange={handleChanges}
                     />
                 </label>
+                </div>
+                <div>
                 <label htmlFor="url">
-                    <input
+                    <StyledTextInput
                         type="text"
                         name="url"
                         id="url"
@@ -85,7 +88,7 @@ const ArticleCard = ({
                     />
                 </label>
                 <label htmlFor="categories">
-                    <input
+                    <StyledTextInput
                         type="text"
                         name="categories"
                         id="categories"
@@ -94,9 +97,11 @@ const ArticleCard = ({
                         onChange={handleChanges}
                     />
                 </label>
+                </div>
+                <div>
                 <label htmlFor="notes">
-                    <input
-                        type="text"
+                    <textarea
+                        rows="4"
                         name="notes"
                         id="notes"
                         placeholder="notes"
@@ -104,17 +109,21 @@ const ArticleCard = ({
                         onChange={handleChanges}
                     />
                 </label>
-                <button onClick={delArt}>Remove Article</button>
+                </div>
+                <div>
+                
                 <button onClick={editArt}>Edit Article</button>
                 <button onClick={backToList}>Back to Article List</button>
-            </form>
+                <button onClick={delArt}>Remove Article</button>
+                </div>
+            </StyledForm>
             {
                 (isUpdated) ? <h4>Changed Updated</h4> : null
             }
             {
                 (isRemoved) ? <h4>Article Removed</h4> : null
             }
-        </div>
+        </ArtDiv>
     )
 
 }
@@ -131,3 +140,25 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {submitEditArt, removeArt}
 export default connect (mapStateToProps, mapDispatchToProps) (ArticleCard);
+
+const ArtDiv = styled.div`  
+
+    margin: 24px;
+
+`
+const StyledForm = styled.form`
+    padding:24px;
+    width: 50%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    
+    textarea {
+        margin: 12px;
+        width: 63%;
+    }
+`
+const StyledTextInput = styled.input`
+    margin: 12px;
+`
+
