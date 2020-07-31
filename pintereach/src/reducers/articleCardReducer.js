@@ -7,13 +7,16 @@ import {
     REMOVE_ART_FAIL
 } from "../actions";
 
-const initialState = {
+export const initialState = {
     title: "",
     author: "",
     url: "",
     categories: "",
-    notes: "notes go here"
-
+    notes: "",
+    isUpdating: false,
+    isUpdated: false,
+    isRemoving: false,
+    isRemoved: false
 };
 
 export const articleCardReducer = (state = initialState, action) => {
@@ -22,10 +25,13 @@ export const articleCardReducer = (state = initialState, action) => {
         case UPDATE_ART_START:
             return {
                 ...state,
+                isUpdating: true
             };
         case UPDATE_ART_SUCCESS:
             return {
                 ...state,
+                isUpdated: true,
+                isUpdating: false   
             }
         case UPDATE_ART_FAIL:
             return {
@@ -34,10 +40,13 @@ export const articleCardReducer = (state = initialState, action) => {
         case REMOVE_ART_START:
             return {
                 ...state,
+                isRemoving: true
             }  
         case REMOVE_ART_SUCCESS:
             return {
                 ...state,
+                isRemoving: false,
+                isRemoved: true
             }
          case REMOVE_ART_FAIL:
             return {

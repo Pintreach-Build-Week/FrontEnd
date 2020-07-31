@@ -12,10 +12,6 @@ const initialState = {
         username: "",
         password: ""
     },
-    articles: {}
-
-
-
 };
 
 export const logInReducer = (state = initialState, action) => {
@@ -25,10 +21,6 @@ export const logInReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: true,
-                // credentials: {
-                //     username: action.payload.username, 
-                //     password: action.payload.password
-                // }
             };
         case FETCHING_SIGN_IN_SUCCESS:
             return {
