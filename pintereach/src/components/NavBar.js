@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import './css/landingpage.css';
 
 
-const NavBar = (props) => {
+const NavBar = () => {
 
     return (
-        <NavContainer>
+        <NavContainer> 
             <meta charSet="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <title>Pintereach | A go-to spot for your research topics! </title>
