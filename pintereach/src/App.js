@@ -10,7 +10,7 @@ import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import ArticleList from "./components/ArticleList";
 import ArticleCard from './components/ArticleCard';
-
+import AddArticleForm from './components/AddArticleForm';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
     <Route path="/login" component={LogIn} />
     <PrivateRoute path="/article-list" component={ArticleList}/>
     <PrivateRoute path="/article-card" component={ArticleCard}/>
-    
+    <PrivateRoute path="/add-article" component={AddArticleForm}/>
     </div>
   )
 }
