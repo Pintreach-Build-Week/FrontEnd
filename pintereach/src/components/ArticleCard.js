@@ -6,8 +6,6 @@ import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { initialState } from "../reducers/articleCardReducer";
 import styled from "styled-components";
 
-
-
 const ArticleCard = ({
     submitEditArt, 
     removeArt, 
