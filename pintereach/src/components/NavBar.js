@@ -36,7 +36,7 @@ const NavBar = () => {
 
 const NavContainer = styled.div`
     background-color: #B9E1DC;
-   
-    }
+
+    
     `
 export default NavBar;
