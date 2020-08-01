@@ -17,11 +17,9 @@ return(
 
 const NavContainer = styled.div`
     background-color: #B9E1DC;
-    margin-top:-22px;
 
     #logo{
         padding: 2%;
-        
     }
     `
 
