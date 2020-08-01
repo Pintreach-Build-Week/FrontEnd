@@ -25,8 +25,8 @@ let LandingPage = () => {
                         <p>
                             If you love reading articles but don't have the time to reach them as
                             you find them, Pintereach is the place for you. Pintereach allows you
-                            to pin all of the articles you want to read for later with the ability
-                            to sort by category and by importance.
+                            to savegit  all of the articles you want to read for later with the ability
+                            to sort by category.
           <br />
                             <br />
                             <br />
