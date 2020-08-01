@@ -110,12 +110,11 @@ const ArticleCard = ({
                     />
                 </label>
                 </div>
-                <div>
-                
-                <button onClick={editArt}>Edit Article</button>
-                <button onClick={backToList}>Back to Article List</button>
-                <button onClick={delArt}>Remove Article</button>
-                </div>
+                <ButtonsWrapper>
+                    <button onClick={editArt}>Submit</button>
+                    <button onClick={delArt}>Remove Article</button>
+                    <button onClick={backToList}>Back to Article List</button>
+                </ButtonsWrapper>
             </StyledForm>
             {
                 (isUpdated) ? <h4>Changed Updated</h4> : null
@@ -155,10 +154,16 @@ const StyledForm = styled.form`
     
     textarea {
         margin: 12px;
-        width: 63%;
+        width: calc(100% - 24px);
     }
 `
 const StyledTextInput = styled.input`
     margin: 12px;
+    width: calc(50% - 24px);
+`
+
+const ButtonsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
 
