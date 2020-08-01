@@ -27,7 +27,7 @@ export const signIn = (credentials, history) => dispatch => {
     axiosWithAuth()
         .post("/api/auth/login", credentials)
         .then(res => {
-            console.log("res from signIn", res.data);
+            console.log("res from signIn", res);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('userName', credentials.username);
             dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: res.data });
