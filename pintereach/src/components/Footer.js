@@ -1,39 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
+import './css/landingpage.css';
 
 const Footer = () =>{
 
 
     return(
         <Footerdiv>
-            <div id="left">
+            
                 <h3 id="bottomLogo">Pintereach</h3>
-            </div>
-            <div id="right">
-                &copy;2020 Pintereach
-            </div>
-        </Footerdiv>
+                <nav id="bottomNav">
+                    <a href="/">Home</a> |
+      <a href="/home"> Login</a> |
+      <a href="/contact"> Contact</a>
+                </nav>
+                <section id="copyright"> © 2020 Pintereach</section>
+           
+        </Footerdiv> 
     )
 
 }
 const Footerdiv = styled.div`
     background-color:#756C83;
     color:white;
-    height:30vh;
-    display:flex;
-    margin-top:10%;
-    justify-content:space-evenly;
+    margin:0 auto;
+    height:25%;
+    padding-top:5%;
+    padding-bottom:5%;
+    text-align:center;
 
-    #left{
+    #bottomLogo{
         font-family:'Bebas Neue';
         font-size:1.5rem;
-        padding-right:20%;
-        border-right:1px dashed #fbfbfb;
 
     }
-    #right{
-        margin-top:4%;
+    #bottomNav{
+        a{
+            text-decoration:none;
+            color:#fbfbfb;
+        }
     }
+    
     
 `
 export default Footer;
