@@ -19,7 +19,7 @@ function App() {
     <Route exact path="/" component={Home}/>
     <Route path="/login" component={LogIn} />
     <PrivateRoute path="/article-list" component={ArticleList}/>
-    <PrivateRoute path="/article-card" component={ArticleCard}/>
+    <PrivateRoute path="/article-card/:articleId" component={ArticleCard}/>
     <PrivateRoute path="/add-article" component={AddArticleForm}/>
     </div>
   )

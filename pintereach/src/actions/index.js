@@ -30,8 +30,20 @@ export const signIn = (credentials, history) => dispatch => {
             console.log("res from signIn", res);
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('userName', credentials.username);
-            dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: res.data });
-            history.push("/article-list");
+            let payload = {
+                username: credentials.username,
+                token: res.data.token
+            }
+
+            axiosWithAuth()
+            .get("api/auth/users")
+            .then( res => {
+                const getUser = res.data.filter(item => item.username === credentials.username);
+                payload.userId = getUser[0].id;
+                localStorage.setItem('userId', payload.userId);
+                dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: payload });
+                history.push("/article-list");
+            })
         })
         .catch(err => {
             console.log(err);
@@ -41,12 +53,10 @@ export const signIn = (credentials, history) => dispatch => {
 
 export const signUp = (userInfo) => dispatch => {
 
-    console.log("/api/auth/register", userInfo);
     dispatch({ type: SIGN_UP_START })
     axiosWithAuth()
         .post("/api/auth/register", userInfo)
         .then(res => {
-            console.log("res from signIn", res.data)
             dispatch({ type: SIGN_UP_SUCCESS, payload: res.data })
         })
         .catch(err => {
@@ -55,13 +65,13 @@ export const signUp = (userInfo) => dispatch => {
         })
 };
 
-export const submitEditArt = (updateArtInfo, history) => dispatch => {
+export const submitEditArt = (articleId, updateArtInfo, history) => dispatch => {
     // console.log("submitEditArt",updateArtInfo )
     dispatch({ type: UPDATE_ART_START })
+    console.log('update ', updateArtInfo);
     axiosWithAuth()
-        .put(`/articles/${id}`, updateArtInfo)  //put in id dynamically
+        .put(`/articles/${articleId}`, updateArtInfo)  //put in id dynamically
         .then(res => {
-            console.log("res from submitUpdateArt", res)
             dispatch({ type: UPDATE_ART_SUCCESS, payload: res.data })
             history.push("/article-list")
         })
@@ -73,7 +83,6 @@ export const submitEditArt = (updateArtInfo, history) => dispatch => {
 }
 
 export const removeArt = (history) => dispatch => {
-    console.log("removeArt")
     dispatch({ type: REMOVE_ART_START })
     axiosWithAuth()
         .delete(`/articles/${id}`)
@@ -96,6 +105,7 @@ export const addArt = (article, history) => dispatch => {
         .then(res => {
             console.log("res from addArt", res.data)
             dispatch({ type: ADD_ART_SUCCESS, payload: res.data })
+            history.push("/article-list")
         })
         .catch(err => {
             console.log(err);

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux"
 import {removeArt, submitEditArt} from "../actions";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
-import { initialState } from "../reducers/articleCardReducer";
+import { initialFormState } from "../reducers/articleCardReducer";
 import styled from "styled-components";
 
 const ArticleCard = ({
@@ -15,12 +16,15 @@ const ArticleCard = ({
     isRemoved
 }) => {
     let history = useHistory();
-    const [formInfo, setFormInfo] = useState(initialState)
-    const cardId = 1; 
+    const [formInfo, setFormInfo] = useState(initialFormState)
+    let { articleId } = useParams();
+
+    // const cardId = 2; 
     useEffect(() => {
         AxiosWithAuth()
-        .get(`/articles/${cardId}`)
+        .get(`/articles/${articleId}`)
         .then( res => {
+            console.log('res ', res.data);
             setFormInfo(res.data);
         })
         .catch(err => console.log(err))
@@ -33,7 +37,7 @@ const ArticleCard = ({
     }
     const editArt = e => {
         e.preventDefault();
-        submitEditArt(formInfo, history);
+        submitEditArt(articleId, formInfo, history);
     } 
     const delArt = e => {
         e.preventDefault();
@@ -114,9 +118,7 @@ const ArticleCard = ({
                     <button onClick={backToList}>Back to Article List</button>
                 </ButtonsWrapper>
             </StyledForm>
-            {
-                (isUpdated) ? <h4>Changed Updated</h4> : null
-            }
+         
             {
                 (isRemoved) ? <h4>Article Removed</h4> : null
             }

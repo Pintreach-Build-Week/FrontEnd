@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const AddArticleForm = (props) => {
 
     let history = useHistory();
-
+console.log('user ', props.user);
     const defaultformState = {
         title: '',
         url: '',
@@ -27,7 +27,7 @@ const AddArticleForm = (props) => {
         },
         author: '',
         notes: '',
-        user_ID: localStorage.getItem("userName")
+        user_ID: props.user.userId
     };
 
     let [formData, setformData] = useState(defaultformState);
@@ -35,12 +35,12 @@ const AddArticleForm = (props) => {
     const handleChange = (e) => {
         if (e.target.value) {
             setformData({ ...formData, [e.target.name]: e.target.value })
-        }; console.log(formData)
+        }; console.log('change form ', formData)
     }
 
     let handleCategory = (e) => {
         let catName = e.target.getAttribute("name");
-        console.log(catName);
+        console.log('category name ', catName);
         setformData({
             ...formData,
             categories: {
@@ -50,10 +50,23 @@ const AddArticleForm = (props) => {
         });
 
     }
-    console.log(formData);
 
     const handleSubmit = (e) => {
+        console.log('form data ', formData);
         e.preventDefault();
+
+        let categoriesString = '';
+        
+        Object.keys(formData.categories).forEach(key => {
+            if (formData.categories[key] === true)
+            categoriesString += `${key} `;
+        })
+
+        console.log('categories', categoriesString);
+        setformData({
+            ...formData,
+            categories: categoriesString
+        })
         props.addArt(formData, history);
     };
 
@@ -221,6 +234,7 @@ const ArticleContainer = styled.div`
     `
 const mapStateToProps = state => {
     return {
+        user: state.logInReducer.user
     }
 }
 
