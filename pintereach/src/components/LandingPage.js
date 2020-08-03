@@ -36,7 +36,7 @@ let LandingPage = () => {
                         </p>
                     </section>
                     <section id="bottomcontent">
-                        
+                        <h3 id="sampTitle">Sample Articles</h3>
                             <SampleArticles />
                            
         
@@ -44,15 +44,7 @@ let LandingPage = () => {
                     </section>
                 </section>
             </div>
-            <footer>
-                <nav id="bottomNav">
-                    <a href="/">Home</a> |
-      <a href="https://pintereachbrittany.netlify.app/about/">About</a> |
-      <a href="/home">Login</a> |
-      <a href="https://pintereachbrittany.netlify.app/contact/">Contact</a>
-                </nav>
-                <section id="copyright"> © 2020 Pintereach</section>
-            </footer>
+           
         </div>
     );
 }
