@@ -9,6 +9,8 @@ import ArticleList from "./components/ArticleList";
 import ArticleCard from './components/ArticleCard';
 import LandingPage from './components/LandingPage';
 import AddArticleForm from './components/AddArticleForm';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
 
 
 function App() {
@@ -18,9 +20,11 @@ function App() {
     <Route exact path="/" component={LandingPage}/>
     <Route path="/login" component={LogIn} />
     <Route path="/home" component={Home} />
+    <Route path="/contact" component={Contact} />
     <PrivateRoute path="/article-list" component={ArticleList}/>
     <PrivateRoute path="/article-card" component={ArticleCard}/>
     <PrivateRoute path="/add-article" component={AddArticleForm}/>
+    <Footer />
     </div>
   )
 }

@@ -25,8 +25,8 @@ let LandingPage = () => {
                         <p>
                             If you love reading articles but don't have the time to reach them as
                             you find them, Pintereach is the place for you. Pintereach allows you
-                            to pin all of the articles you want to read for later with the ability
-                            to sort by category and by importance.
+                            to savegit  all of the articles you want to read for later with the ability
+                            to sort by category.
           <br />
                             <br />
                             <br />
@@ -36,7 +36,7 @@ let LandingPage = () => {
                         </p>
                     </section>
                     <section id="bottomcontent">
-                        
+                        <h3 id="sampTitle">Sample Articles</h3>
                             <SampleArticles />
                            
         
@@ -44,15 +44,7 @@ let LandingPage = () => {
                     </section>
                 </section>
             </div>
-            <footer>
-                <nav id="bottomNav">
-                    <a href="/">Home</a> |
-      <a href="https://pintereachbrittany.netlify.app/about/">About</a> |
-      <a href="/home">Login</a> |
-      <a href="https://pintereachbrittany.netlify.app/contact/">Contact</a>
-                </nav>
-                <section id="copyright"> © 2020 Pintereach</section>
-            </footer>
+           
         </div>
     );
 }

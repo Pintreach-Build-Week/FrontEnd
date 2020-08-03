@@ -299,7 +299,16 @@
     padding: 10%;
     display: flex;
     justify-content: space-evenly;
+    flex-direction:column;
+    text-align:center;
     background-color: #ffffff;
+  }
+  #container #contentMain #bottomcontent #sampTitle{
+    font-size:5rem;
+    font-family:'Lobster';
+    color: #F38181;
+    margin-top:0%;
+    margin-bottom:5%;
   }
   @media (max-width:800px) {
     #container #contentMain #bottomcontent {

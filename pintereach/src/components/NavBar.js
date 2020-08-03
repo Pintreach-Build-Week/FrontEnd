@@ -17,13 +17,13 @@ const NavBar = () => {
             />
             <section id="header">
                 <section id="logosection">
-                    <a href="https://pintereachbrittany.netlify.app">
+                    <a href="https://pintereach.netlify.app">
                         <h1 id="logo">Pintereach</h1>
                     </a>
                     <h6 id="slogan">A go-to spot for your research topics!</h6>
                 </section>
                 <nav id="mainnav">
-                    <a href="about/">About</a>
+                    <a href="contact/">Contact</a>
                     <a href="/home" className="special">
                         Login
       </a>
