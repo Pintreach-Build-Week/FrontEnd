@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { addArt } from "../actions";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
+const AddArticleForm = (props) => {
 
-<<<<<<< Updated upstream
-
-const AddArticleForm = () => {
-=======
     let history = useHistory();
     const userId = localStorage.getItem('userId')
->>>>>>> Stashed changes
+
     const defaultformState = {
         title: '',
         url: '',
@@ -16,45 +16,37 @@ const AddArticleForm = () => {
             tech: false,
             diy: false,
             beauty: false,
-            gardening: false, 
+            gardening: false,
             automotive: false,
             sports: false,
-            medical: false, 
-            creative: false, 
+            medical: false,
+            creative: false,
             relationships: false,
-            news:false, 
-            crime: false, 
+            news: false,
+            crime: false,
             politics: false
-
         },
         author: '',
-<<<<<<< Updated upstream
-        notes: ''
-=======
         notes: '',
         user_ID: userId
->>>>>>> Stashed changes
     };
-let [formData, setformData] = useState(defaultformState);
 
-<<<<<<< Updated upstream
-const handleChange = (e) =>{
-if(e.target.value){
-    setformData({...formData, [e.target.name]: e.target.value})
-}; console.log(formData)
-}
-=======
+    const handleChange = (e) =>{
+        if(e.target.value){
+            setformData({...formData, [e.target.name]: e.target.value})
+        }; console.log(formData)
+    }
+
     let [formData, setformData] = useState(defaultformState);
 
     const handleChange = (e) => {
         if (e.target.value) {
             setformData({ ...formData, [e.target.name]: e.target.value })
-        }; console.log('change form ', formData)
+        };
     }
 
     let handleCategory = (e) => {
         let catName = e.target.getAttribute("name");
-        console.log('category name ', catName);
         setformData({
             ...formData,
             categories: {
@@ -66,7 +58,6 @@ if(e.target.value){
     }
 
     const handleSubmit = (e) => {
-        console.log('form data ', formData);
         e.preventDefault();
 
         let categoriesString = '';
@@ -76,106 +67,84 @@ if(e.target.value){
             categoriesString += `${key} `;
         })
 
-        console.log('categories', categoriesString);
-
         const newForm = formData;
         newForm.categories = categoriesString;
 
-        console.log('newform ', newForm);
         props.addArt(newForm, history);
-
         
     };
->>>>>>> Stashed changes
 
-let handleCategory = (e) =>{
-    let catName = e.target.getAttribute("name");
-    console.log(catName);
-    setformData({
-        ...formData,
-        categories: {...formData.categories,
-            [catName]: !formData.categories[catName]
-        }
-});
+    return (
+        <ArticleContainer>
+            <div id="stickynote">
+                <h2 id="articleAdd">Add Article</h2>
 
-}
-console.log(formData);
-const handleSubmit = (e)=>{
-    e.preventDefault();
-};
-
-
-return(
-    <ArticleContainer>
-        <div id="stickynote"> 
-        <h2 id="articleAdd">Add Article</h2>
-       
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="title" id="titleLabel">
-                Article Title:
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="title" id="titleLabel">
+                        Article Title:
                 <input type="text" placeholder="Title of Article" name="title" size="70" id="title" value={formData.title} onChange={handleChange} />
-            </label>
+                    </label>
 
-            <label htmlFor="url" id="urlLabel">
-                URL of Article:
+                    <label htmlFor="url" id="urlLabel">
+                        URL of Article:
                 <input type="url" placeholder="Article URL" id="url" name="url" size="70" value={formData.url} onChange={handleChange} />
-            </label>
+                    </label>
 
-            <label htmlFor="author" id="authorLabel">
-                Author / Source:
+                    <label htmlFor="author" id="authorLabel">
+                        Author / Source:
                 <input type="text" id="author" name="author" size="70" value={formData.author} onChange={handleChange} />
-            </label>
-            <div id="cats">
+                    </label>
+                    <div id="cats">
                         Categories:
                         <div id="catsections">
-                            <div className={formData.categories.tech ? "catsectionactive":"catsection"} >
+                            <div className={formData.categories.tech ? "catsectionactive" : "catsection"} >
                                 <label name="tech" onClick={handleCategory}>Technology</label>
                             </div>
-                            <div className={formData.categories.diy ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.diy ? "catsectionactive" : "catsection"}>
                                 <label name="diy" onClick={handleCategory}>Do-It-Yourself</label>
                             </div>
-                            <div className={formData.categories.beauty ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.beauty ? "catsectionactive" : "catsection"}>
                                 <label name="beauty" onClick={handleCategory}>Beauty</label>
                             </div>
-                            <div className={formData.categories.gardening ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.gardening ? "catsectionactive" : "catsection"}>
                                 <label name="gardening" onClick={handleCategory}>Gardening</label>
                             </div>
-                            <div className={formData.categories.automotive ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.automotive ? "catsectionactive" : "catsection"}>
                                 <label name="automotive" onClick={handleCategory}>Automotive</label>
                             </div>
-                            <div className={formData.categories.sports ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.sports ? "catsectionactive" : "catsection"}>
                                 <label name="sports" onClick={handleCategory}>Sports</label>
                             </div>
-                            <div className={formData.categories.medical ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.medical ? "catsectionactive" : "catsection"}>
                                 <label name="medical" onClick={handleCategory}>Medical</label>
                             </div>
-                            <div className={formData.categories.creative ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.creative ? "catsectionactive" : "catsection"}>
                                 <label name="creative" onClick={handleCategory}>Creative</label>
                             </div>
-                            <div className={formData.categories.relationships ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.relationships ? "catsectionactive" : "catsection"}>
                                 <label name="relationships" onClick={handleCategory}>Relationships</label>
                             </div>
-                            <div className={formData.categories.news ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.news ? "catsectionactive" : "catsection"}>
                                 <label name="news" onClick={handleCategory}>News</label>
                             </div>
-                            <div className={formData.categories.crime ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.crime ? "catsectionactive" : "catsection"}>
                                 <label name="crime" onClick={handleCategory}>Crime</label>
                             </div>
-                            <div className={formData.categories.politics ? "catsectionactive":"catsection"}>
+                            <div className={formData.categories.politics ? "catsectionactive" : "catsection"}>
                                 <label name="politics" onClick={handleCategory}>Politics</label>
                             </div>
                         </div>
-                        </div>
-            <label htmlFor="notes" id="notesLabel">
-                Notes / Reason for adding:
+                    </div>
+                    <label htmlFor="notes" id="notesLabel">
+                        Notes / Reason for adding:
                 <textarea id="notes" name="notes" value={formData.notes} onChange={handleChange} />
-            </label>
-           
-            <button> Add Article</button>
-        </form>
-        </div>
-    </ArticleContainer>
-)
+                    </label>
+
+                    <button> Add Article</button>
+                </form>
+            </div>
+        </ArticleContainer>
+    )
 
 }
 const ArticleContainer = styled.div`
@@ -267,4 +236,12 @@ const ArticleContainer = styled.div`
         }  
     }
     `
-export default AddArticleForm;
+const mapStateToProps = state => {
+    return {
+        user: state.logInReducer.user
+    }
+}
+
+const mapDispatchToProps = { addArt };
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddArticleForm);

@@ -8,14 +8,11 @@ import {
 
 const initialState = {
     isFetching: false,
-    credentials: {
-        username: "",
-        password: ""
-    },
+    user: {}
 };
 
 export const logInReducer = (state = initialState, action) => {
-    console.log('action ', action);
+    console.log('loginReducer action', action);
     switch(action.type){
         case FETCHING_SIGN_IN_START:
             return {
@@ -26,7 +23,7 @@ export const logInReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: false,
-                article: action.payload
+                user: action.payload
             }
         case FETCHING_SIGN_IN_FAIL:
             return {

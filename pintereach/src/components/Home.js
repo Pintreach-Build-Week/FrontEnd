@@ -31,7 +31,6 @@ const Home = () => {
                     <SignUserUp/>
                 </div>
             </div>
-            <Footer />
         </Container>
     )
 }
