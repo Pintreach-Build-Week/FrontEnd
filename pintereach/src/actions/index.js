@@ -68,9 +68,30 @@ export const submitEditArt = (updateArtInfo,history) => dispatch => {
     
 }
 
+<<<<<<< Updated upstream
 export const removeArt = (history) => dispatch => {
     console.log("removeArt" )
     dispatch({ type: REMOVE_ART_START})
+=======
+export const removeArt = (articleId,history) => dispatch => {
+    dispatch({ type: REMOVE_ART_START })
+    axiosWithAuth()
+        .delete(`/articles/${articleId}`)
+        .then(res => {
+            console.log("res from deleteArt", res.data)
+            dispatch({ type: REMOVE_ART_SUCCESS, payload: res.data })
+            history.push("/article-list")
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: REMOVE_ART_FAIL, payload: err })
+        })
+}
+
+export const addArt = (article, history) => dispatch => {
+    console.log("addArt");
+    dispatch({ type: ADD_ART_START })
+>>>>>>> Stashed changes
     axiosWithAuth()
     .delete(`/articles/${id}` )
     .then(res => {

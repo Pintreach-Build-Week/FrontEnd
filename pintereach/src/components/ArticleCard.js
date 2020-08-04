@@ -12,7 +12,6 @@ const ArticleCard = ({
     submitEditArt, 
     removeArt, 
     isUpdating, 
-    isUpdated,
     isRemoving,
     isRemoved
 }) => {
@@ -39,7 +38,7 @@ const ArticleCard = ({
     } 
     const delArt = e => {
         e.preventDefault();
-        removeArt(history)
+        removeArt(articleId, history)
     }
     const backToList = () =>{
         history.push("/article-list")

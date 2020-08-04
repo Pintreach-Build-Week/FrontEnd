@@ -2,8 +2,13 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 
+<<<<<<< Updated upstream
 
 const AddArticleForm = () => {
+=======
+    let history = useHistory();
+    const userId = localStorage.getItem('userId')
+>>>>>>> Stashed changes
     const defaultformState = {
         title: '',
         url: '',
@@ -23,15 +28,65 @@ const AddArticleForm = () => {
 
         },
         author: '',
+<<<<<<< Updated upstream
         notes: ''
+=======
+        notes: '',
+        user_ID: userId
+>>>>>>> Stashed changes
     };
 let [formData, setformData] = useState(defaultformState);
 
+<<<<<<< Updated upstream
 const handleChange = (e) =>{
 if(e.target.value){
     setformData({...formData, [e.target.name]: e.target.value})
 }; console.log(formData)
 }
+=======
+    let [formData, setformData] = useState(defaultformState);
+
+    const handleChange = (e) => {
+        if (e.target.value) {
+            setformData({ ...formData, [e.target.name]: e.target.value })
+        }; console.log('change form ', formData)
+    }
+
+    let handleCategory = (e) => {
+        let catName = e.target.getAttribute("name");
+        console.log('category name ', catName);
+        setformData({
+            ...formData,
+            categories: {
+                ...formData.categories,
+                [catName]: !formData.categories[catName]
+            }
+        });
+
+    }
+
+    const handleSubmit = (e) => {
+        console.log('form data ', formData);
+        e.preventDefault();
+
+        let categoriesString = '';
+        
+        Object.keys(formData.categories).forEach(key => {
+            if (formData.categories[key] === true)
+            categoriesString += `${key} `;
+        })
+
+        console.log('categories', categoriesString);
+
+        const newForm = formData;
+        newForm.categories = categoriesString;
+
+        console.log('newform ', newForm);
+        props.addArt(newForm, history);
+
+        
+    };
+>>>>>>> Stashed changes
 
 let handleCategory = (e) =>{
     let catName = e.target.getAttribute("name");
