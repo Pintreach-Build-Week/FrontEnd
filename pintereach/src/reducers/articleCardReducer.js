@@ -7,17 +7,20 @@ import {
     REMOVE_ART_FAIL
 } from "../actions";
 
-export const initialState = {
+export const initialFormState = {
     title: "",
     author: "",
     url: "",
     categories: "",
     notes: "",
+};
+
+const initialState = {
     isUpdating: false,
     isUpdated: false,
     isRemoving: false,
     isRemoved: false
-};
+}
 
 export const articleCardReducer = (state = initialState, action) => {
     console.log('action ', action);
@@ -36,6 +39,7 @@ export const articleCardReducer = (state = initialState, action) => {
         case UPDATE_ART_FAIL:
             return {
                 ...state,
+                isUpdating: false 
             } 
         case REMOVE_ART_START:
             return {

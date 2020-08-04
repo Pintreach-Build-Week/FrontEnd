@@ -14,65 +14,73 @@ export const UPDATE_ART_FAIL = "UPDATE_ART_FAIL";
 export const REMOVE_ART_START = "REMOVE_ART_START";
 export const REMOVE_ART_SUCCESS = "REMOVE_ART_SUCCESS";
 export const REMOVE_ART_FAIL = "REMOVE_ART_FAIL";
+export const ADD_ART_START = "ADD_ART_START";
+export const ADD_ART_SUCCESS = "ADD_ART_SUCCESS";
+export const ADD_ART_FAIL = "ADD_ART_FAIL";
 
 const id = 1; //mock id
 
 
 export const signIn = (credentials, history) => dispatch => {
     console.log("signIn", credentials);
-    dispatch({ type: FETCHING_SIGN_IN_START})
+    dispatch({ type: FETCHING_SIGN_IN_START })
     axiosWithAuth()
-    .post("/api/auth/login", credentials )
-    .then(res => {
-        console.log("res from signIn", res.data);
-        localStorage.setItem('token', res.data.token);
-        dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: res.data });
-        history.push("/article-list");
-    })
-    .catch( err => { 
-        console.log(err);
-        dispatch({ type: FETCHING_SIGN_IN_FAIL, payload: err})
-    })
+        .post("/api/auth/login", credentials)
+        .then(res => {
+            console.log("res from signIn", res);
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('userName', credentials.username);
+            let payload = {
+                username: credentials.username,
+                token: res.data.token
+            }
+
+            axiosWithAuth()
+            .get("api/auth/users")
+            .then( res => {
+                const getUser = res.data.filter(item => item.username === credentials.username);
+                payload.userId = getUser[0].id;
+                localStorage.setItem('userId', payload.userId);
+                dispatch({ type: FETCHING_SIGN_IN_SUCCESS, payload: payload });
+                history.push("/article-list");
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: FETCHING_SIGN_IN_FAIL, payload: err })
+        })
 };
 
 export const signUp = (userInfo) => dispatch => {
-    
-    console.log("/api/auth/register", userInfo);
-    dispatch({ type: SIGN_UP_START})
+
+    dispatch({ type: SIGN_UP_START })
     axiosWithAuth()
-    .post("/api/auth/register", userInfo )
-    .then(res => {
-        console.log("res from signIn", res.data)
-        dispatch({ type: SIGN_UP_SUCCESS, payload: res.data })
-    })
-    .catch( err => { 
-        console.log(err);
-        dispatch({ type: SIGN_UP_FAIL, payload: err})
-    })
+        .post("/api/auth/register", userInfo)
+        .then(res => {
+            dispatch({ type: SIGN_UP_SUCCESS, payload: res.data })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: SIGN_UP_FAIL, payload: err })
+        })
 };
 
-export const submitEditArt = (updateArtInfo,history) => dispatch => {
+export const submitEditArt = (articleId, updateArtInfo, history) => dispatch => {
     // console.log("submitEditArt",updateArtInfo )
-    dispatch({ type: UPDATE_ART_START})
+    dispatch({ type: UPDATE_ART_START })
+    console.log('update ', updateArtInfo);
     axiosWithAuth()
-    .put(`/articles/${id}`, updateArtInfo )  //put in id dynamically
-    .then(res => {
-        console.log("res from submitUpdateArt", res)
-        dispatch({ type: UPDATE_ART_SUCCESS, payload: res.data })
-        history.push("/article-list")
-    })
-    .catch( err => { 
-        console.log(err);
-        dispatch({ type: UPDATE_ART_FAIL, payload: err})
-    })
-    
-}
+        .put(`/articles/${articleId}`, updateArtInfo)  //put in id dynamically
+        .then(res => {
+            dispatch({ type: UPDATE_ART_SUCCESS, payload: res.data })
+            history.push("/article-list")
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: UPDATE_ART_FAIL, payload: err })
+        })
 
-<<<<<<< Updated upstream
-export const removeArt = (history) => dispatch => {
-    console.log("removeArt" )
-    dispatch({ type: REMOVE_ART_START})
-=======
+}
 export const removeArt = (articleId,history) => dispatch => {
     dispatch({ type: REMOVE_ART_START })
     axiosWithAuth()
@@ -91,16 +99,15 @@ export const removeArt = (articleId,history) => dispatch => {
 export const addArt = (article, history) => dispatch => {
     console.log("addArt");
     dispatch({ type: ADD_ART_START })
->>>>>>> Stashed changes
     axiosWithAuth()
-    .delete(`/articles/${id}` )
-    .then(res => {
-        console.log("res from deleteArt", res.data)
-        dispatch({ type: REMOVE_ART_SUCCESS, payload: res.data })
-        history.push("/article-list")
-    })
-    .catch( err => { 
-        console.log(err);
-        dispatch({ type: REMOVE_ART_FAIL, payload: err})
-    })
+        .post("/articles", article)
+        .then(res => {
+            console.log("res from addArt", res.data)
+            dispatch({ type: ADD_ART_SUCCESS, payload: res.data })
+            history.push("/article-list")
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: ADD_ART_FAIL, payload: err })
+        })
 }
