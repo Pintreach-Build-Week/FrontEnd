@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import AxiosWithAuth from "../utils/AxiosWithAuth";
 import { connect } from "react-redux";
-
+import styled from "styled-components";
 
 const ArticleList = ({user}) => {
 
@@ -53,10 +53,11 @@ const ArticleList = ({user}) => {
                 articleList.length > 0 ? <ul>
                     {
                         articleList.map((article, index) => (
-                            <li key={index}>
+                            <StyledList key={index}>
+                                
                                 {article.title}
                                 <button onClick={() => moreInfo(article.id)}>More Info</button>
-                            </li>
+                            </StyledList>
                             )
                         )}
                 </ul> : <p>No Articles for user. Click Add Article to add some.</p>
@@ -72,3 +73,13 @@ const mapStateToProps = state => {
 }
 const mapDisplatchToProps = {};
 export default connect (mapStateToProps, mapDisplatchToProps)(ArticleList);
+
+const StyledList = styled.li`
+    margin: 24px 12px;
+    list-style-type: none;
+    width: 400px;
+
+    button {
+        float: right;
+    }
+`

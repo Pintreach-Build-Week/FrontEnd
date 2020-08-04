@@ -31,12 +31,6 @@ const AddArticleForm = (props) => {
         user_ID: userId
     };
 
-    const handleChange = (e) =>{
-        if(e.target.value){
-            setformData({...formData, [e.target.name]: e.target.value})
-        }; 
-    }
-
     let [formData, setformData] = useState(defaultformState);
 
     const handleChange = (e) => {
