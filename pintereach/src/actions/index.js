@@ -82,7 +82,6 @@ export const submitEditArt = (articleId, updateArtInfo, history) => dispatch => 
 
 }
 
-
 export const removeArt = (articleId,history) => dispatch => {
     dispatch({ type: REMOVE_ART_START })
     axiosWithAuth()

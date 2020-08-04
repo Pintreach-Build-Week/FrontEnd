@@ -34,7 +34,7 @@ const AddArticleForm = (props) => {
     const handleChange = (e) =>{
         if(e.target.value){
             setformData({...formData, [e.target.name]: e.target.value})
-        }; console.log(formData)
+        }; 
     }
 
     let [formData, setformData] = useState(defaultformState);
